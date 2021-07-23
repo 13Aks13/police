@@ -2,16 +2,12 @@
 
 namespace app\controllers;
 
-use app\models\search\CrimesSearch;
 use Yii;
-use yii\base\BaseObject;
-use yii\data\Pagination;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
-use yii\db\Query;
-use app\models\Crimes;
+use app\models\search\CrimesSearch;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\UploadForm;
@@ -65,96 +61,6 @@ class SiteController extends Controller
         ]);
     }
 
-    /**
-     * Displays homepage.
-     *
-     * @return string
-     */
-    public function actionIndex2()
-    {
-        $request = Yii::$app->request;
-
-        $query = new Query();
-        $query->select('*')->from('crimes')->where(['not', ['id' => null]]);
-
-        if ($request->isPost) {
-            $param = $request->getBodyParam('Crimes');
-            $codeid = $param['code_id'];
-            $crimename = $param['crime_name'];
-            $crimenumber = $param['crime_number'];
-            $crimedate = $param['crime_date'];
-            $crimelocation = $param['crime_location'];
-
-            /*** Search start ***/
-            if ($codeid) {
-                $query->andWhere(['code_id' => $codeid]);
-            }
-
-            if ($crimename) {
-                $query->andWhere(['like', 'crime_name', $crimename]);
-            }
-
-            if ($crimenumber) {
-                $query->andWhere(['=', 'crime_number', $crimenumber]);
-            }
-
-            if ($crimedate) {
-                $query->andWhere(['=', 'crime_date', $crimedate]);
-            }
-
-            if ($crimelocation) {
-                $query->andWhere(['like', 'crime_location', $crimelocation]);
-            }
-            /*** Search end ***/
-        }
-
-        if ($request->isGet) {
-            $codeid = $request->get('codeid');
-            $crimename = $request->get('crime_name');
-            $crimenumber = $request->get('crime_number');
-            $crimedate = $request->get('crime_date');
-            $crimelocation = $request->get('crime_location');
-
-            /*** Search start ***/
-            if ($codeid) {
-                $query->andWhere(['code_id' => $codeid]);
-            }
-
-            if ($crimename) {
-                $query->andWhere(['like', 'crime_name', $crimename]);
-            }
-
-            if ($crimenumber) {
-                $query->andWhere(['=', 'crime_number', $crimenumber]);
-            }
-
-            if ($crimedate) {
-                $query->andWhere(['=', 'crime_date', $crimedate]);
-            }
-
-            if ($crimelocation) {
-                $query->andWhere(['like', 'crime_location', $crimelocation]);
-            }
-            /*** Search end ***/
-        }
-
-        $countQuery = clone $query;
-        $pages = new Pagination(['totalCount' => $countQuery->count()]);
-        $models = $query->offset($pages->offset)->limit($pages->limit)->orderBy('code_id ASC')->all();
-
-
-        foreach ($models as $key => $model) {
-            $subq = new Query();
-            $models[$key]['quantity'] = $subq->select('quantity')->from('suspects')->where(['code_link_id' => $model['code_id']])->one();
-
-            $subq2 = new Query();
-            $models[$key]['suspects'] = $subq2->select('name')->from('suspects')->where(['code_link_id' => $model['code_id']])->all();
-        }
-
-        return $this->render('index', [
-           'sort' => ['code_id' => 'ASC'], 'data' => new Crimes(), 'models' => $models, 'pages' => $pages,
-        ]);
-    }
 
     /**
      * Login action.

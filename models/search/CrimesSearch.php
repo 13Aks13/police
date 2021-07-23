@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 
 class CrimesSearch extends Crimes
 {
+    //
     public $quantity;
     public $names;
     public $coordinates;
@@ -28,7 +29,6 @@ class CrimesSearch extends Crimes
      */
     public function scenarios()
     {
-        // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
 

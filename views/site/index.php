@@ -75,6 +75,9 @@ $this->title = 'Crimes';
 
             echo "<td>".$model['crime_location']."</td>";
             echo "<td>".$model['lat'].",".$model['long']."</td>";
+            echo "<td>";
+            echo "<img src='https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/".$model['long'].",".$model['lat'].",9,0/150x80?access_token=pk.eyJ1IjoiYWtzMTMiLCJhIjoiY2tyZ2I1c3JuMDFsazMxbzV4bTRmZXY1YiJ9.Fjh2BO6FmuHguwnjDIWwIA'></a>";
+            echo "</td>";
             echo "</tr>";
         }
         ?>
