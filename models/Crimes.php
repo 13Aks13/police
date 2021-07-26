@@ -15,6 +15,7 @@ use Yii;
  * @property string|null $crime_location
  * @property string|null $lat
  * @property string|null $long
+ * @property array|null $orders
  */
 class Crimes extends \yii\db\ActiveRecord
 {
