@@ -2,7 +2,6 @@
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-
 /* @var $data app\models\Crimes */
 
 use yii\helpers\Html;
@@ -20,43 +19,34 @@ $this->title = 'Crimes';
         <tr>
             <?php $form = ActiveForm::begin(['id' => 'crimes-form', 'method' => 'get', 'action' => '/index']) ?>
             <th>
-                <?= $form->field($data, 'orders[code_id_asc]')->checkbox(['uncheck' => false, 'label' => 'ASC']); ?>
-                <?= $form->field($data, 'orders[code_id_desc]')->checkbox(['uncheck' => false, 'label' => 'DESC']); ?>
+                <?php echo $sort->link('code_id'); ?>
                 <?= $form->field($data, 'code_id'); ?>
             </th>
             <th>
-                <?= $form->field($data, 'orders[crime_name_asc]')->checkbox(['uncheck' => false, 'label' => 'ASC']); ?>
-                <?= $form->field($data, 'orders[crime_name_desc]')->checkbox(['uncheck' => false, 'label' => 'DESC']); ?>
+                <?php echo $sort->link('crime_name'); ?>
                 <?= $form->field($data, 'crime_name'); ?>
             </th>
             <th>
-                <?= $form->field($data, 'orders[crime_number_asc]')->checkbox(['uncheck' => false, 'label' => 'ASC']); ?>
-                <?= $form->field($data, 'orders[crime_number_desc]')->checkbox(['uncheck' => false, 'label' => 'DESC']); ?>
+                <?php echo $sort->link('crime_number'); ?>
                 <?= $form->field($data, 'crime_number'); ?>
             </th>
             <th>
-                <?= $form->field($data, 'orders[crime_date_asc]')->checkbox(['uncheck' => false, 'label' => 'ASC', 'disabled' => 'disabled']); ?>
-                <?= $form->field($data, 'orders[crime_date_desc]')->checkbox(['uncheck' => false, 'label' => 'DESC', 'disabled' => 'disabled']); ?>
+                <?php echo $sort->link('crime_date'); ?>
                 <?= $form->field($data, 'crime_date')->textInput(['disabled' => 'disabled']); ?>
             </th>
             <th>
-                <?= $form->field($data, 'orders[quantity_asc]')->checkbox(['uncheck' => false, 'label' => 'ASC']); ?>
-                <?= $form->field($data, 'orders[quantity_desc]')->checkbox(['uncheck' => false, 'label' => 'DESC']); ?>
+                <?php echo $sort->link('quantity'); ?>
                 <?= $form->field($data, 'quantity'); ?>
             </th>
             <th>
-                <?= $form->field($data, 'orders[names_asc]')->checkbox(['uncheck' => false, 'label' => 'ASC', 'disabled' => 'disabled']); ?>
-                <?= $form->field($data, 'orders[names_desc]')->checkbox(['uncheck' => false, 'label' => 'DESC', 'disabled' => 'disabled']); ?>
+
                 <?= $form->field($data, 'names'); ?>
             </th>
             <th>
-                <?= $form->field($data, 'orders[crime_location_asc]')->checkbox(['uncheck' => false, 'label' => 'ASC', 'disabled' => 'disabled']); ?>
-                <?= $form->field($data, 'orders[crime_location_desc]')->checkbox(['uncheck' => false, 'label' => 'DESC', 'disabled' => 'disabled']); ?>
+                <?php echo $sort->link('crime_location'); ?>
                 <?= $form->field($data, 'crime_location'); ?>
             </th>
             <th>
-                <?= $form->field($data, 'orders[coordinates_asc]')->checkbox(['uncheck' => false, 'label' => 'ASC', 'disabled' => 'disabled']); ?>
-                <?= $form->field($data, 'orders[coordinates_desc]')->checkbox(['uncheck' => false, 'label' => 'DESC', 'disabled' => 'disabled']); ?>
                 <?= $form->field($data, 'coordinates'); ?>
             </th>
             <th>

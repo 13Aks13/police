@@ -12,6 +12,7 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\UploadForm;
 use yii\web\UploadedFile;
+use yii\data\Sort;
 
 
 class SiteController extends Controller
@@ -52,12 +53,54 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
+        $sort = new Sort([
+            'attributes' => [
+                'code_id' => [
+                    'asc' => ['crime_id' => SORT_ASC,],
+                    'desc' => ['crime_id' => SORT_DESC,],
+                    'default' => SORT_ASC,
+                    'label' => 'Crime code',
+                ],
+                'crime_name' => [
+                    'asc' => ['crime_name' => SORT_ASC,],
+                    'desc' => ['crime_name' => SORT_DESC,],
+                    'default' => SORT_ASC,
+                    'label' => 'Crime name',
+                ],
+                'crime_number' => [
+                    'asc' => ['crime_number' => SORT_ASC,],
+                    'desc' => ['crime_number' => SORT_DESC,],
+                    'default' => SORT_ASC,
+                    'label' => 'Crime number',
+                ],
+                'crime_date' => [
+                    'asc' => ['crime_date' => SORT_ASC,],
+                    'desc' => ['crime_date' => SORT_DESC,],
+                    'default' => SORT_ASC,
+                    'label' => 'Crime date',
+                ],
+                'quantity' => [
+                    'asc' => ['quantity' => SORT_ASC,],
+                    'desc' => ['quantity' => SORT_DESC,],
+                    'default' => SORT_ASC,
+                    'label' => 'Quantity suspects',
+                ],
+                'crime_location' => [
+                    'asc' => ['crime_location' => SORT_ASC,],
+                    'desc' => ['crime_location' => SORT_DESC,],
+                    'default' => SORT_ASC,
+                    'label' => 'Crime location',
+                ],
+            ],
+        ]);
+
         $searchModel = new CrimesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->render('index', [
-           'models' => $dataProvider->getModels(),
-           'data' => $searchModel,
-           'pages' => $dataProvider->getPagination()
+            'models' => $dataProvider->getModels(),
+            'data' => $searchModel,
+            'pages' => $dataProvider->getPagination(),
+            'sort' => $sort,
         ]);
     }
 

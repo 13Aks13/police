@@ -68,35 +68,6 @@ class CrimesSearch extends Crimes
            ->orFilterWhere(['like', 'long', $this->coordinates])
            ->andFilterWhere(['like', Suspects::tableName() . '.name', $this->names]);
 
-
-        /*** code_id ***/
-        if (isset($this->orders['code_id_asc']) && !isset($this->orders['code_id_desc']) && $this->orders['code_id_asc'] == 1)
-            $query->orderBy(['code_id' => SORT_ASC]);
-
-        if (isset($this->orders['code_id_desc']) && !isset($this->orders['code_id_asc']) && $this->orders['code_id_desc'] == 1)
-            $query->orderBy(['code_id' => SORT_DESC]);
-
-        /*** crime_name ***/
-        if (isset($this->orders['crime_name_asc']) && !isset($this->orders['crime_name_desc']) && $this->orders['crime_name_asc'] == 1)
-            $query->orderBy(['crime_name' => SORT_ASC]);
-
-        if (isset($this->orders['crime_name_desc']) && !isset($this->orders['crime_name_asc']) && $this->orders['crime_name_desc'] == 1)
-            $query->orderBy(['crime_name' => SORT_DESC]);
-
-        /*** crime_number ***/
-        if (isset($this->orders['crime_number_asc'])  && !isset($this->orders['crime_number_desc']) && $this->orders['crime_number_asc'] == 1)
-            $query->orderBy(['crime_number' => SORT_ASC]);
-
-        if (isset($this->orders['crime_number_desc'])  && !isset($this->orders['crime_number_asc']) && $this->orders['crime_number_desc'] == 1)
-            $query->orderBy(['crime_number' => SORT_DESC]);
-
-        /*** quantity ***/
-        if (isset($this->orders['quantity_asc'])  && !isset($this->orders['quantity_desc']) && $this->orders['quantity_asc'] == 1)
-            $query->orderBy(['quantity' => SORT_ASC]);
-
-        if (isset($this->orders['quantity_desc'])  && !isset($this->orders['quantity_asc']) && $this->orders['quantity_desc'] == 1)
-            $query->orderBy(['quantity' => SORT_DESC]);
-
         return $dataProvider;
     }
 }
