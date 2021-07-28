@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Crimes;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -47,6 +48,10 @@ class SiteController extends Controller
               'class' => 'yii\web\ErrorAction',
            ], 'captcha' => [
               'class' => 'yii\captcha\CaptchaAction', 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+           ],
+           'view' => [
+                'class' => 'yii\web\ViewAction',
+                'viewPrefix' => '',
            ],
         ];
     }
@@ -103,7 +108,6 @@ class SiteController extends Controller
             'sort' => $sort,
         ]);
     }
-
 
     /**
      * Login action.

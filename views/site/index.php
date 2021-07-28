@@ -90,7 +90,7 @@ $this->title = 'Crimes';
             }
             echo "</td>";
 
-            echo "<td>".$model['crime_location']."</td>";
+            echo "<td><a href='/index.php?r=crime/view&code_id=".$model['code_id']."'>".$model['crime_location']."</a></td>";
             echo "<td>".$model['lat'].",".$model['long']."</td>";
             echo "<td>";
             echo "<img src='https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-s+e41111(".$model['long'].",".$model['lat']."),pin-s+f90b0b(".$model['long'].",".$model['lat'].")/".$model['long'].",".$model['lat'].",15.43,0/200x100?access_token=pk.eyJ1IjoiYWtzMTMiLCJhIjoiY2tyZ2I1c3JuMDFsazMxbzV4bTRmZXY1YiJ9.Fjh2BO6FmuHguwnjDIWwIA'></a>";
